@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="108dp"
+    android:height="108dp"
+    android:viewportWidth="108"
+    android:viewportHeight="108">
+    
+    <!-- Ezkutuaren ingerada (Zibersegurtasuna) -->
+    <path
+        android:strokeColor="#3B82F6"
+        android:strokeWidth="2.5"
+        android:fillColor="#1D2A44"
+        android:pathData="M54,28 C68,28 76,33 76,33 C76,55 68,71 54,78 C40,71 32,55 32,33 C32,33 40,28 54,28 Z" />
+
+    <!-- Giltzarrapoaren arku goikoa -->
+    <path
+        android:strokeColor="#60A5FA"
+        android:strokeWidth="2.5"
+        android:strokeLineCap="round"
+        android:fillColor="#00000000"
+        android:pathData="M48,46 C48,42.5 50.7,40 54,40 C57.3,40 60,42.5 60,46 L60,50 L48,50 Z" />
+
+    <!-- Giltzarrapoaren gorputza -->
+    <path
+        android:fillColor="#3B82F6"
+        android:pathData="M45,50 L63,50 C64.6,50 66,51.4 66,53 L66,64 C66,65.6 64.6,67 63,67 L45,67 C43.4,67 42,65.6 42,64 L42,53 C42,51.4 43.4,50 45,50 Z" />
+
+    <!-- Giltzaren zuloa -->
+    <path
+        android:fillColor="#FFFFFF"
+        android:pathData="M54,55 C52.9,55 52,55.9 52,57 C52,57.7 52.4,58.3 53,58.7 L52.5,62.5 L55.5,62.5 L55,58.7 C55.6,58.3 56,57.7 56,57 C56,55.9 55.1,55 54,55 Z" />
+
+    <!-- Goiko puntu distiratsua -->
+    <path
+        android:fillColor="#60A5FA"
+        android:pathData="M54,32 A1.5,1.5 0 1,0 54,35 A1.5,1.5 0 1,0 54,32" />
+</vector>

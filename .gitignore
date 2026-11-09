@@ -1,0 +1,24 @@
+# Gradle & Android Build Caches
+.gradle/
+build/
+**/build/
+*.iml
+.idea/
+local.properties
+.cxx/
+captures/
+
+# OS and Temp files
+.DS_Store
+Thumbs.db
+*.log
+*.tmp
+*.bak
+*~
+
+# Test screenshots (bakarrik azkerketa_eredua.png mantendu)
+screen_*.png
+zati_teorikoa/screen_*.png
+
+# Node modules (balego)
+node_modules/

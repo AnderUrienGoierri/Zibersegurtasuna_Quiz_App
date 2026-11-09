@@ -1,0 +1,384 @@
+<!doctype html>
+<html lang="eu">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, user-scalable=no"
+    />
+    <title>KriptoQuiz - Zibersegurtasuna Azterketa Prestatzailea</title>
+    <meta
+      name="description"
+      content="Goierri Eskolako 2MG3 Zibersegurtasuna 1. ebaluazioko zati teorikoa prestatzeko quiz interaktiboa."
+    />
+    <link rel="manifest" href="manifest.json" />
+    <meta name="theme-color" content="#1e293b" />
+    <link rel="stylesheet" href="styles.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <div id="app" class="app-container">
+      <!-- Goiburukoa -->
+      <header class="app-header">
+        <div class="header-left">
+          <span class="badge-tag">2MG3 · Zibersegurtasuna</span>
+          <h1>KriptoQuiz 2026</h1>
+        </div>
+        <div class="header-right">
+          <button
+            id="navPracticalBtn"
+            class="icon-btn"
+            title="⚡ Zati Praktikoa: Gida & Kodeak"
+          >
+            ⚡
+          </button>
+          <button
+            id="qrMobileBtn"
+            class="icon-btn"
+            title="Mugikorrean irekitzeko QR kodea"
+          >
+            📱
+          </button>
+          <button
+            id="soundToggleBtn"
+            class="icon-btn"
+            title="Soinua aktibatu/desaktibatu"
+          >
+            <span id="soundIcon">🔊</span>
+          </button>
+          <button id="homeBtn" class="icon-btn hidden" title="Hasierara itzuli">
+            🏠
+          </button>
+        </div>
+      </header>
+
+      <!-- HASIERAKO PANTAILA (MENUA) -->
+      <main id="homeView" class="view active">
+        <section class="hero-card">
+          <div class="hero-icon">🔐</div>
+          <h2>1. Ebaluazioko Azterketa Teorikoa</h2>
+          <p class="hero-desc">
+            <strong>20 galderako inkesta</strong> (galdera eta 4 erantzun, bat
+            zuzena). Galderak kontzeptualak dira: teoria sakon ulertzea eskatzen
+            da.
+          </p>
+          <div class="stats-mini-bar">
+            <div class="stat-pill">
+              <span class="stat-num" id="statTotalQuestions">108</span>
+              <span class="stat-lbl">Galdera Bankuan</span>
+            </div>
+            <div class="stat-pill">
+              <span class="stat-num" id="statExamsDone">0</span>
+              <span class="stat-lbl">Egindako Azterketak</span>
+            </div>
+            <div class="stat-pill">
+              <span class="stat-num" id="statAvgScore">-</span>
+              <span class="stat-lbl">Batez Bestekoa</span>
+            </div>
+          </div>
+        </section>
+
+        <!-- JOKO ETA IKASKETA MODUAK -->
+        <section class="modes-grid">
+          <!-- 1. TEORIA: AZTERKETA SIMULATUA -->
+          <div class="mode-card primary-mode" id="btnStartExam">
+            <div class="mode-card-main">
+              <div class="mode-icon">⏱️</div>
+              <div class="mode-info">
+                <span class="mode-badge">Gomendatua</span>
+                <h3>Azterketa Simulatua (Teoria)</h3>
+                <p>
+                  20 galdera ausaz hautatuak (108ko bankutik). Benetako azterketa teorikoaren eredua.
+                </p>
+              </div>
+            </div>
+            <button class="btn btn-primary">Hasi Azterketa Teorikoa →</button>
+          </div>
+
+          <!-- 2. PRAKTIKA: ZATI PRAKTIKOA -->
+          <div class="mode-card practical-card-hero" id="btnOpenPractical">
+            <div class="mode-card-main">
+              <div class="mode-icon">⚡</div>
+              <div class="mode-info">
+                <span class="mode-badge" style="background: #10b981; color: white;">Ariketak & Kodeak</span>
+                <h3>Zati Praktikoa (Gida & Kodeak)</h3>
+                <p>
+                  Nmap, OpenSSL (AES/RSA/Sinadurak), SQL Injection, Metasploit eta laborategietako komando guztiak azalpenekin.
+                </p>
+              </div>
+            </div>
+            <button class="btn btn-secondary" style="border-color: #10b981; color: #10b981; font-weight: 600;">Gida Praktikoa Ireki →</button>
+          </div>
+
+          <!-- 3. IKASKETA LIBREA -->
+          <div class="mode-card" id="btnStartPractice">
+            <div class="mode-card-main">
+              <div class="mode-icon">📖</div>
+              <div class="mode-info">
+                <h3>Ikasketa Librea & Berehalako Feedbacka</h3>
+                <p>
+                  Galderak banan-banan erantzun, zuzenketaren zergatia eta azalpen teknikoa berehala irakurriz.
+                </p>
+              </div>
+            </div>
+            <button class="btn btn-secondary">Praktikatu →</button>
+          </div>
+
+          <!-- 4. BLOKEKA ENTRENATU -->
+          <div class="mode-card" id="btnFilterBlock">
+            <div class="mode-card-main">
+              <div class="mode-icon">🎯</div>
+              <div class="mode-info">
+                <h3>Blokeka Entrenatu</h3>
+                <p>
+                  Hautatu 7 bloke teorikoetako bat eta sakondu zure zalantza handienak dituzun gaietan.
+                </p>
+              </div>
+            </div>
+            <button class="btn btn-secondary">Aukeratu Blokea →</button>
+          </div>
+
+          <!-- 5. HUTS EGINDAKOAK LANDU -->
+          <div class="mode-card" id="btnReviewMistakes">
+            <div class="mode-card-main">
+              <div class="mode-icon">🔄</div>
+              <div class="mode-info">
+                <h3>Huts Egindakoak Landu</h3>
+                <p>
+                  Aurreko saioetan huts egindako galderak bakarrik berrikusi kontzeptuak finkatu arte.
+                </p>
+              </div>
+            </div>
+            <button class="btn btn-secondary" id="btnReviewMistakesAction">
+              Berrikusi (<span id="mistakesCount">0</span>) →
+            </button>
+          </div>
+        </section>
+
+        <!-- BLOKEEI BURUZKO LABURPEN BERRIA -->
+        <section class="topic-overview">
+          <h3>📚 Gaien Banaketa (kriptografia_estebe.pdf)</h3>
+          <div class="topics-list">
+            <div class="topic-item">
+              <span>1. Blokea:</span> Oinarrizko Kontzeptuak (Kerckhoffs,
+              Base64, 4 Helburuak)
+            </div>
+            <div class="topic-item">
+              <span>2. Blokea:</span> Zifratze Simetrikoa (AES, ECB vs CBC vs
+              GCM, ChaCha20)
+            </div>
+            <div class="topic-item">
+              <span>3. Blokea:</span> Zifratze Asimetrikoa (RSA, Diffie-Hellman,
+              ECC, Hibridoa)
+            </div>
+            <div class="topic-item">
+              <span>4. Blokea:</span> Hash Funtzioak (Avalanche, MD5/SHA-1
+              hautsita, Salt, KDF)
+            </div>
+            <div class="topic-item">
+              <span>5. Blokea:</span> Sinadura Digitala eta PKI (X.509, TLS 1.3,
+              DNIe, eIDAS)
+            </div>
+            <div class="topic-item">
+              <span>6. Blokea:</span> Gako-Kudeaketa eta Erasoak (Entropia,
+              MitM, Heartbleed)
+            </div>
+            <div class="topic-item">
+              <span>7. Blokea:</span> Zabaltzea (Zesar/Vigenere, LUKS/BitLocker,
+              PQC kuantikoa)
+            </div>
+          </div>
+        </section>
+      </main>
+
+      <!-- QR KODEA MODALA MUGIKORRERAKO -->
+      <div id="qrModal" class="modal hidden">
+        <div class="modal-card" style="text-align: center">
+          <h3>📱 Mugikorrean Entrenatu</h3>
+          <p class="modal-desc">
+            Eskaneatu QR kode hau zure mugikorraren kamerarekin edo idatzi
+            beheko helbidea (ziurtatu WiFi berean zaudela):
+          </p>
+          <div
+            style="
+              background: white;
+              padding: 16px;
+              border-radius: 12px;
+              display: inline-block;
+              margin: 12px auto;
+            "
+          >
+            <img
+              id="qrImage"
+              src=""
+              alt="QR Kodea"
+              style="width: 180px; height: 180px; display: block"
+            />
+          </div>
+          <p
+            id="qrUrlText"
+            style="
+              font-family: var(--font-mono);
+              font-size: 0.95rem;
+              color: var(--primary);
+              margin-bottom: 16px;
+              word-break: break-all;
+            "
+          ></p>
+          <button id="closeQrModalBtn" class="btn btn-primary full-width">
+            Itxi
+          </button>
+        </div>
+      </div>
+
+      <!-- BLOKEA HAUTATZEKO MODALA / IKUSPEGIA -->
+      <div id="blockModal" class="modal hidden">
+        <div class="modal-card">
+          <h3>Aukeratu Gai-Blokea</h3>
+          <p class="modal-desc">Zein arlo landu nahi duzu oraintxe bertan?</p>
+          <div class="block-select-list" id="blockListContainer">
+            <!-- Dinamikoki txertatuko dira -->
+          </div>
+          <button id="closeBlockModalBtn" class="btn btn-outline full-width">
+            Utzi
+          </button>
+        </div>
+      </div>
+
+      <!-- GALDERA / GALDEKETA PANTAILA -->
+      <main id="quizView" class="view">
+        <!-- Goiko barra eta aurrerapena -->
+        <div class="quiz-topbar">
+          <div class="quiz-status-left">
+            <span class="quiz-mode-pill" id="quizModeBadge"
+              >Azterketa Modua</span
+            >
+            <span class="quiz-block-pill" id="quizBlockBadge">Guztiak</span>
+          </div>
+          <div class="quiz-status-right">
+            <div class="quiz-timer" id="quizTimer">⏱️ 00:00</div>
+            <span class="quiz-counter" id="quizCounter">1 / 20</span>
+          </div>
+        </div>
+
+        <!-- Aurrerapen barra -->
+        <div class="progress-track">
+          <div class="progress-bar" id="progressBar"></div>
+        </div>
+
+        <!-- Galdera Karta -->
+        <section class="question-card" id="questionCard">
+          <div class="question-category" id="questionCategory">
+            Oinarrizko Kontzeptuak
+          </div>
+          <h2 class="question-title" id="questionText">
+            Galderaren testua kargatzen...
+          </h2>
+
+          <!-- Erantzun aukerak -->
+          <div class="options-container" id="optionsContainer">
+            <!-- Botoiak dinamikoki gehituko dira -->
+          </div>
+
+          <!-- Azalpen kutxa (Ikasketa moduan edo azterketa berrikusteko) -->
+          <div class="explanation-box hidden" id="explanationBox">
+            <div class="explanation-header" id="explanationHeader">
+              <span class="exp-icon">💡</span>
+              <span class="exp-title">Azalpen Teknikoa:</span>
+            </div>
+            <p class="explanation-text" id="explanationText"></p>
+          </div>
+        </section>
+
+        <!-- Beheko botoiak -->
+        <footer class="quiz-footer">
+          <button id="prevBtn" class="btn btn-secondary" disabled>
+            ← Aurrekoa
+          </button>
+          <button id="nextBtn" class="btn btn-primary">Hurrengoa →</button>
+        </footer>
+      </main>
+
+      <!-- EMAITZEN PANTAILA -->
+      <main id="resultsView" class="view">
+        <section class="result-hero-card">
+          <div class="result-badge-icon" id="resultIcon">🏆</div>
+          <h2 id="resultTitle">Azterketa Amaituta!</h2>
+          <div class="score-display">
+            <span class="score-large" id="scoreLarge">8.5</span>
+            <span class="score-max">/ 10</span>
+          </div>
+          <p class="score-detail" id="scoreDetail">
+            20tik 17 galdera ongi erantzun dituzu (%85).
+          </p>
+          <div class="result-status-pill" id="resultStatusPill">GAINDITUA</div>
+        </section>
+
+        <!-- Ekintza botoiak -->
+        <div class="results-actions">
+          <button id="retryExamBtn" class="btn btn-primary full-width">
+            Beste Azterketa Bat Egin 🔄
+          </button>
+          <button
+            id="reviewExamDetailsBtn"
+            class="btn btn-secondary full-width"
+          >
+            Erantzun Guztiak Berrikusi 🔍
+          </button>
+          <button id="backHomeBtn" class="btn btn-outline full-width">
+            Hasierara Itzuli 🏠
+          </button>
+        </div>
+
+        <!-- Berrikuspen Zerrenda Xehea -->
+        <section
+          class="review-details-section hidden"
+          id="reviewDetailsSection"
+        >
+          <h3>🔍 Erantzunen Berrikuspen Xehea</h3>
+          <div id="reviewItemsList" class="review-items-list">
+            <!-- Elementuak dinamikoki kargatuko dira -->
+          </div>
+        </section>
+      </main>
+
+      <!-- ZATI PRAKTIKOAREN PANTAILA -->
+      <main id="practicalView" class="view">
+        <div class="practical-topbar">
+          <div class="practical-title-row">
+            <h2><span>⚡</span> Zati Praktikoa: Gida & Kodeak</h2>
+            <button id="closePracticalBtn" class="btn btn-outline" style="padding: 5px 12px; font-size: 0.82rem;">Hasiera 🏠</button>
+          </div>
+          <input
+            type="text"
+            id="practicalSearchInput"
+            class="practical-search-input"
+            placeholder="🔍 Bilatu komandoa edo gako-hitza (adib. nmap, rsa, union, vsftpd...)"
+          />
+          <div class="practical-pills-scroll" id="practicalFilterPills">
+            <button class="filter-pill active" data-filter="guztiak">Guztiak (23)</button>
+            <button class="filter-pill" data-filter="kali-meta">🎯 Kali ⚔️ Meta2</button>
+            <button class="filter-pill" data-filter="nmap">🔍 Nmap</button>
+            <button class="filter-pill" data-filter="sqli">💉 DVWA & SQLi</button>
+            <button class="filter-pill" data-filter="simetrikoa">🔐 AES-256</button>
+            <button class="filter-pill" data-filter="asimetrikoa">🔑 RSA 2048</button>
+            <button class="filter-pill" data-filter="hash">✍️ Sinadura & Hash</button>
+            <button class="filter-pill" data-filter="txuleta">📋 Txuleta</button>
+          </div>
+        </div>
+        <div id="practicalListContainer" class="practical-items-grid">
+          <!-- Elementuak dinamikoki txertatuko dira practical_data.js-tik -->
+        </div>
+      </main>
+    </div>
+
+    <script src="questions_data.js"></script>
+    <script src="practical_data.js"></script>
+    <script src="app.js"></script>
+  </body>
+</html>
