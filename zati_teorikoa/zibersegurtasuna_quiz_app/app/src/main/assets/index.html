@@ -13,7 +13,7 @@
     />
     <link rel="manifest" href="manifest.json" />
     <meta name="theme-color" content="#1e293b" />
-    <link rel="stylesheet" href="styles.css" />
+    <link rel="stylesheet" href="styles.css?v=2026.4" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -93,7 +93,8 @@
                 <span class="mode-badge">Gomendatua</span>
                 <h3>Azterketa Simulatua (Teoria)</h3>
                 <p>
-                  20 galdera ausaz hautatuak (108ko bankutik). Benetako azterketa teorikoaren eredua.
+                  20 galdera ausaz hautatuak (108ko bankutik). Benetako
+                  azterketa teorikoaren eredua.
                 </p>
               </div>
             </div>
@@ -105,14 +106,24 @@
             <div class="mode-card-main">
               <div class="mode-icon">⚡</div>
               <div class="mode-info">
-                <span class="mode-badge" style="background: #10b981; color: white;">Ariketak & Kodeak</span>
+                <span
+                  class="mode-badge"
+                  style="background: #10b981; color: white"
+                  >Ariketak & Kodeak</span
+                >
                 <h3>Zati Praktikoa (Gida & Kodeak)</h3>
                 <p>
-                  Nmap, OpenSSL (AES/RSA/Sinadurak), SQL Injection, Metasploit eta laborategietako komando guztiak azalpenekin.
+                  Nmap, OpenSSL (AES/RSA/Sinadurak), SQL Injection, Metasploit
+                  eta laborategietako komando guztiak azalpenekin.
                 </p>
               </div>
             </div>
-            <button class="btn btn-secondary" style="border-color: #10b981; color: #10b981; font-weight: 600;">Gida Praktikoa Ireki →</button>
+            <button
+              class="btn btn-secondary"
+              style="border-color: #10b981; color: #10b981; font-weight: 600"
+            >
+              Gida Praktikoa Ireki →
+            </button>
           </div>
 
           <!-- 3. IKASKETA LIBREA -->
@@ -122,7 +133,8 @@
               <div class="mode-info">
                 <h3>Ikasketa Librea & Berehalako Feedbacka</h3>
                 <p>
-                  Galderak banan-banan erantzun, zuzenketaren zergatia eta azalpen teknikoa berehala irakurriz.
+                  Galderak banan-banan erantzun, zuzenketaren zergatia eta
+                  azalpen teknikoa berehala irakurriz.
                 </p>
               </div>
             </div>
@@ -136,7 +148,8 @@
               <div class="mode-info">
                 <h3>Blokeka Entrenatu</h3>
                 <p>
-                  Hautatu 7 bloke teorikoetako bat eta sakondu zure zalantza handienak dituzun gaietan.
+                  Hautatu 7 bloke teorikoetako bat eta sakondu zure zalantza
+                  handienak dituzun gaietan.
                 </p>
               </div>
             </div>
@@ -150,7 +163,8 @@
               <div class="mode-info">
                 <h3>Huts Egindakoak Landu</h3>
                 <p>
-                  Aurreko saioetan huts egindako galderak bakarrik berrikusi kontzeptuak finkatu arte.
+                  Aurreko saioetan huts egindako galderak bakarrik berrikusi
+                  kontzeptuak finkatu arte.
                 </p>
               </div>
             </div>
@@ -352,7 +366,13 @@
         <div class="practical-topbar">
           <div class="practical-title-row">
             <h2><span>⚡</span> Zati Praktikoa: Gida & Kodeak</h2>
-            <button id="closePracticalBtn" class="btn btn-outline" style="padding: 5px 12px; font-size: 0.82rem;">Hasiera 🏠</button>
+            <button
+              id="closePracticalBtn"
+              class="btn btn-outline"
+              style="padding: 5px 12px; font-size: 0.82rem"
+            >
+              Hasiera 🏠
+            </button>
           </div>
           <input
             type="text"
@@ -361,14 +381,28 @@
             placeholder="🔍 Bilatu komandoa edo gako-hitza (adib. nmap, rsa, union, vsftpd...)"
           />
           <div class="practical-pills-scroll" id="practicalFilterPills">
-            <button class="filter-pill active" data-filter="guztiak">Guztiak (23)</button>
-            <button class="filter-pill" data-filter="kali-meta">🎯 Kali ⚔️ Meta2</button>
+            <button class="filter-pill active" data-filter="guztiak">
+              Guztiak (23)
+            </button>
+            <button class="filter-pill" data-filter="kali-meta">
+              🎯 Kali ⚔️ Meta2
+            </button>
             <button class="filter-pill" data-filter="nmap">🔍 Nmap</button>
-            <button class="filter-pill" data-filter="sqli">💉 DVWA & SQLi</button>
-            <button class="filter-pill" data-filter="simetrikoa">🔐 AES-256</button>
-            <button class="filter-pill" data-filter="asimetrikoa">🔑 RSA 2048</button>
-            <button class="filter-pill" data-filter="hash">✍️ Sinadura & Hash</button>
-            <button class="filter-pill" data-filter="txuleta">📋 Txuleta</button>
+            <button class="filter-pill" data-filter="sqli">
+              💉 DVWA & SQLi
+            </button>
+            <button class="filter-pill" data-filter="simetrikoa">
+              🔐 AES-256
+            </button>
+            <button class="filter-pill" data-filter="asimetrikoa">
+              🔑 RSA 2048
+            </button>
+            <button class="filter-pill" data-filter="hash">
+              ✍️ Sinadura & Hash
+            </button>
+            <button class="filter-pill" data-filter="txuleta">
+              📋 Txuleta
+            </button>
           </div>
         </div>
         <div id="practicalListContainer" class="practical-items-grid">
@@ -377,8 +411,8 @@
       </main>
     </div>
 
-    <script src="questions_data.js"></script>
-    <script src="practical_data.js"></script>
-    <script src="app.js"></script>
+    <script src="questions_data.js?v=2026.4"></script>
+    <script src="practical_data.js?v=2026.4"></script>
+    <script src="app.js?v=2026.4"></script>
   </body>
 </html>

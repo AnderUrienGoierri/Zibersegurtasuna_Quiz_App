@@ -900,10 +900,12 @@
   loadQuestions();
   document.addEventListener('DOMContentLoaded', loadQuestions);
 
-  // PWA Service Worker erregistratu
+  // PWA Service Worker erregistratu eta automatikoki eguneratu
   if ('serviceWorker' in navigator) {
     window.addEventListener('load', () => {
-      navigator.serviceWorker.register('sw.js').catch(err => {
+      navigator.serviceWorker.register('sw.js').then(reg => {
+        reg.update();
+      }).catch(err => {
         console.log('SW registration failed:', err);
       });
     });
