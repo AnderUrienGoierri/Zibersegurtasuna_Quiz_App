@@ -32,6 +32,9 @@
   const resultsView = document.getElementById('resultsView');
   const practicalView = document.getElementById('practicalView');
   const blockModal = document.getElementById('blockModal');
+  const confirmExitModal = document.getElementById('confirmExitModal');
+  const cancelExitBtn = document.getElementById('cancelExitBtn');
+  const confirmExitBtn = document.getElementById('confirmExitBtn');
   const homeBtn = document.getElementById('homeBtn');
   const soundToggleBtn = document.getElementById('soundToggleBtn');
   const soundIcon = document.getElementById('soundIcon');
@@ -210,6 +213,26 @@
     return copy;
   }
 
+  // Test aktiboaren segurtasun kontrola (nahi gabe ez irteteko)
+  let pendingExitAction = null;
+
+  function isQuizActive() {
+    return quizView && quizView.classList.contains('active') && currentQuestions.length > 0;
+  }
+
+  function requestExitConfirmation(action) {
+    if (isQuizActive()) {
+      pendingExitAction = action;
+      if (confirmExitModal) {
+        confirmExitModal.classList.remove('hidden');
+      } else if (confirm("⚠️ Test-a egiten ari zara une honetan. Irtenez gero, uneko galderak eta erantzunak galduko dira.\n\nZiur zaude irten nahi duzula?")) {
+        action();
+      }
+    } else {
+      action();
+    }
+  }
+
   // Ikuspegia aldatu
   function switchView(viewName) {
     const appHeader = document.querySelector('.app-header');
@@ -226,6 +249,9 @@
       if (appHeader) appHeader.classList.remove('hidden');
       quizView.classList.add('active');
       homeBtn.classList.remove('hidden');
+      try {
+        history.pushState({ page: 'quiz' }, '');
+      } catch (err) {}
     } else if (viewName === 'results') {
       if (appHeader) appHeader.classList.remove('hidden');
       resultsView.classList.add('active');
@@ -539,11 +565,41 @@
     switchView('home');
   });
 
-  homeBtn.addEventListener('click', () => {
-    if (confirm("Azterketa bertan behera utzi eta hasierara itzuli nahi duzu?")) {
+  // Segurtasun modalaren gertaerak
+  if (cancelExitBtn) {
+    cancelExitBtn.addEventListener('click', () => {
       playSound('click');
+      if (confirmExitModal) confirmExitModal.classList.add('hidden');
+      pendingExitAction = null;
+    });
+  }
+
+  if (confirmExitBtn) {
+    confirmExitBtn.addEventListener('click', () => {
+      playSound('click');
+      if (confirmExitModal) confirmExitModal.classList.add('hidden');
+      if (pendingExitAction) {
+        const act = pendingExitAction;
+        pendingExitAction = null;
+        act();
+      }
+    });
+  }
+
+  if (confirmExitModal) {
+    confirmExitModal.addEventListener('click', (e) => {
+      if (e.target === confirmExitModal) {
+        confirmExitModal.classList.add('hidden');
+        pendingExitAction = null;
+      }
+    });
+  }
+
+  homeBtn.addEventListener('click', () => {
+    playSound('click');
+    requestExitConfirmation(() => {
       switchView('home');
-    }
+    });
   });
 
   // Soinua toggle
@@ -866,7 +922,9 @@
   if (navPracticalBtn) {
     navPracticalBtn.addEventListener('click', () => {
       playSound('click');
-      switchView('practical');
+      requestExitConfirmation(() => {
+        switchView('practical');
+      });
     });
   }
 
@@ -895,6 +953,27 @@
       });
     });
   }
+
+  // NABIGAZIOAREN ETA ATZERA EGITEAREN BABESAK (popstate eta beforeunload)
+  window.addEventListener('popstate', (e) => {
+    if (isQuizActive()) {
+      // Android atzera keinuak edo nabigatzaileko atzera botoiak aplikaziotik ez irteteko
+      try {
+        history.pushState({ page: 'quiz' }, '');
+      } catch (err) {}
+      requestExitConfirmation(() => {
+        switchView('home');
+      });
+    }
+  });
+
+  window.addEventListener('beforeunload', (e) => {
+    if (isQuizActive()) {
+      e.preventDefault();
+      e.returnValue = '';
+      return '';
+    }
+  });
 
   // Hasieratu galderak berehala
   loadQuestions();

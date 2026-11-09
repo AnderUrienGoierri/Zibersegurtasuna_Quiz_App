@@ -1,4 +1,4 @@
-const CACHE_NAME = 'kriptoquiz-v4';
+const CACHE_NAME = 'kriptoquiz-v5';
 const ASSETS = [
   './',
   './index.html',

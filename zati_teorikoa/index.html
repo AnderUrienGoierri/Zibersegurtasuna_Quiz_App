@@ -13,7 +13,7 @@
     />
     <link rel="manifest" href="manifest.json" />
     <meta name="theme-color" content="#1e293b" />
-    <link rel="stylesheet" href="styles.css?v=2026.4" />
+    <link rel="stylesheet" href="styles.css?v=2026.5" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -264,6 +264,25 @@
         </div>
       </div>
 
+      <!-- TEST-A EZ ETETEKO BABES MODALA -->
+      <div id="confirmExitModal" class="modal hidden" role="dialog" aria-modal="true" aria-labelledby="confirmExitTitle">
+        <div class="modal-card" style="text-align: center; max-width: 440px; border-color: rgba(245, 158, 11, 0.4);">
+          <div style="font-size: 3rem; margin-bottom: 8px;">⚠️</div>
+          <h3 id="confirmExitTitle" style="color: #f59e0b; font-size: 1.3rem;">Test-a bertan behera utzi?</h3>
+          <p class="modal-desc" style="color: #cbd5e1; font-size: 0.95rem; margin: 12px 0 20px; line-height: 1.5;">
+            Une honetan test-a egiten ari zara. Orain irteten bazara, <strong>egindako erantzunak eta aurrerapena galdu egingo dira</strong>.
+          </p>
+          <div style="display: flex; gap: 10px; justify-content: center;">
+            <button id="cancelExitBtn" class="btn btn-primary" style="flex: 1; padding: 12px 14px; font-weight: 700;">
+              Jarraitu testarekin ✍️
+            </button>
+            <button id="confirmExitBtn" class="btn" style="flex: 1; padding: 12px 14px; background: #ef4444; color: white; border: none; font-weight: 600; border-radius: var(--radius-md); cursor: pointer;">
+              Irten eta utzi ✕
+            </button>
+          </div>
+        </div>
+      </div>
+
       <!-- GALDERA / GALDEKETA PANTAILA -->
       <main id="quizView" class="view">
         <!-- Goiko barra eta aurrerapena -->
@@ -411,8 +430,8 @@
       </main>
     </div>
 
-    <script src="questions_data.js?v=2026.4"></script>
-    <script src="practical_data.js?v=2026.4"></script>
-    <script src="app.js?v=2026.4"></script>
+    <script src="questions_data.js?v=2026.5"></script>
+    <script src="practical_data.js?v=2026.5"></script>
+    <script src="app.js?v=2026.5"></script>
   </body>
 </html>
